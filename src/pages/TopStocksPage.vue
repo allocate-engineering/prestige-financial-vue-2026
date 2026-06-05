@@ -32,80 +32,30 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="top-stocks-page">
-    <div class="top-stocks-page__filters">
-      <div class="top-stocks-page__filters-header">
-        <div class="top-stocks-page__filters-header-title">
+  <div class="m-2.5 flex flex-col gap-6 rounded-[5px] bg-surface p-6">
+    <div class="mb-3 flex flex-col gap-1.5">
+      <div class="mb-2 flex flex-col">
+        <div class="text-2xl">
           Filters
         </div>
-        <div class="top-stocks-page__filters-header-description">
+        <div>
           Filters apply to summary items and list
         </div>
       </div>
-      <div class="top-stocks-page__filters-input">
-        <label for="min-price">Min Price</label>
-        <input id="min-price" v-model="minPriceFilter" type="number">
+      <div class="flex flex-col gap-1">
+        <label class="font-semibold" for="min-price">Min Price</label>
+        <input id="min-price" v-model="minPriceFilter" class="field" type="number">
       </div>
     </div>
-    <div class="top-stocks-page__summary">
+    <div class="flex justify-between">
       <TopStocksSummaryItem label="Total Volume" :value="getKeySum('volume')" />
       <TopStocksSummaryItem :value="totalMarketCap" />
       <TopStocksSummaryItem label="Average Stock Price" :value="getKeySum('price') / topStocks?.length" />
       <TopStocksSummaryItem label="Oldest IPO" :value="getOldestAndNewestIPOs()[0]" />
       <TopStocksSummaryItem label="Newest IPO" :value="getOldestAndNewestIPOs()[1]" />
     </div>
-    <div class="top-stocks-page__items">
+    <div class="flex flex-col gap-1.5">
       <TopStocksItem v-for="stock in topStocks.filter((stock) => stock.price > minPriceFilter)" :item="stock" />
     </div>
   </div>
 </template>
-
-<style lang="scss">
-.top-stocks-page {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 24px;
-  margin: 10px;
-  background-color: #eef;
-  border-radius: 5px;
-
-  &__filters {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-bottom: 12px;
-  }
-
-  &__filters-header {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 8px;
-  }
-
-  &__filters-header-title {
-    font-size: 1.5rem;
-  }
-
-  &__filters-input {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-
-    > label {
-      font-weight: 600;
-    }
-  }
-
-  &__summary {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__items {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-}
-</style>

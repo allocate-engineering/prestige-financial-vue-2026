@@ -1,12 +1,5 @@
-
 <template>
-  <div class="home-container">
+  <div class="bg-white">
     Home
   </div>
 </template>
-
-<style type="scss" scoped>
-.home-container {
-  background-color: white;
-}
-</style>

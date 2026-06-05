@@ -1,4 +1,4 @@
-FROM node:17-alpine as build
+FROM node:20-alpine as build
 WORKDIR /app
 
 EXPOSE 3000
@@ -7,12 +7,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Dependencies
 #RUN apt-get -qq update && apt-get -qq install -y wget
-#RUN npm install -g yarn
 
 # Package installation
-COPY package.json yarn.lock .
+COPY package.json package-lock.json .
 
-RUN yarn
+RUN npm ci
 
 COPY . .
 

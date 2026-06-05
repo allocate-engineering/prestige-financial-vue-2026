@@ -2,38 +2,12 @@
 </script>
 
 <template>
-  <div class="not-found">
-    <h1 class="not-found__title">
+  <div class="flex h-full flex-col items-center justify-start">
+    <h1 class="m-0 mt-[30%] p-0 text-[10rem] font-black leading-none">
       404
     </h1>
-    <h2 class="not-found__subtitle">
+    <h2 class="m-0 p-0 text-[2rem] font-black">
       Not found
     </h2>
   </div>
 </template>
-
-<style>
-.not-found {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    height: 100%;
-}
-
-.not-found__title {
-    font-size: 10rem;
-    font-weight: 900;
-    margin: 0;
-    padding: 0;
-    line-height: 1;
-    margin-top: 30%;
-}
-
-.not-found__subtitle {
-    font-size: 2rem;
-    font-weight: 900;
-    padding: 0;
-    margin: 0;
-}
-</style>

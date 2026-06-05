@@ -10,7 +10,7 @@ defineProps<{ items: Array<{
 </script>
 
 <template>
-  <table class="time-series-table">
+  <table class="[&_td]:py-0.5 [&_td]:pr-10 [&_th]:py-0.5 [&_th]:pr-10">
     <thead>
       <tr>
         <th>Date</th>
@@ -33,11 +33,3 @@ defineProps<{ items: Array<{
     </tbody>
   </table>
 </template>
-
-<style lang="scss">
-.time-series-table {
-    th, td {
-        padding: 2px 40px 2px 0;
-    }
-}
-</style>

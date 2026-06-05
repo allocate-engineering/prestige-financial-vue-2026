@@ -15,6 +15,10 @@ onMounted(() => {
 
   const firebaseApp = initializeApp(firebaseConfig)
   mainStore.firebase = firebaseApp
+
+  // Exposed for debugging / e2e access from the browser console.
+  window.__PRESTIGE__ = { firebase: firebaseApp }
+
   const auth = getAuth(firebaseApp)
 
   onAuthStateChanged(auth, (oauth) => {
@@ -29,189 +33,33 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="app-parent">
-    <div id="modal-target" class="app-parent__modal-target" />
-    <header class="app-parent__header">
-      <div class="app-parent__header-logo">
-        <img src="@/assets/logo.png"> Prestige Financial Solutions
+  <div class="flex w-full grow flex-col items-start justify-start">
+    <div id="modal-target" class="z-[100]" />
+    <header class="flex w-full min-w-full self-start bg-header px-20 text-[48px] text-brand">
+      <div class="flex items-center">
+        <img src="@/assets/logo.png" class="mr-2.5 h-10"> Prestige Financial Solutions
       </div>
     </header>
 
-    <div id="sign-in-area" class="app-parent__sign-in-area" />
+    <div id="sign-in-area" />
 
-    <main v-if="mainStore.globalLoading" class="app-parent__spinner">
-      <img src="@/assets/puff.svg">
+    <main v-if="mainStore.globalLoading" class="flex h-full grow flex-col items-center justify-center">
+      <img src="@/assets/puff.svg" class="h-[100px]">
     </main>
 
-    <main v-else class="app-parent__main">
-      <div v-if="mainStore.currentUser" class="app-parent__current-user">
+    <main v-else class="min-h-full w-full grow px-10 py-5">
+      <div v-if="mainStore.currentUser">
         currently logged in user: {{ mainStore.currentUser.email }}
       </div>
-      <router-view v-if="mainStore.currentUser" class="app-parent__router-view" />
-      <LoginPage v-else class="app-parent__login-page" />
+      <router-view v-if="mainStore.currentUser" />
+      <LoginPage v-else />
     </main>
 
-    <footer class="app-parent__footer">
-      <div class="app-parent__footer-center">
+    <footer class="mx-auto flex w-full max-w-full flex-row items-center justify-center border-t-2 border-divider px-[10%] py-2.5 text-center text-sm">
+      <div class="grow">
         &copy; Allocate Next Ventures
       </div>
-      <div class="app-parent__footer-links" />
+      <div class="justify-self-end opacity-50" />
     </footer>
   </div>
 </template>
-
-<style lang="scss">
-@import url(sanitize.css);
-
-body {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  font-family: "Roboto", sans-serif;
-  padding: 0;
-  margin: 0;
-  min-height: 100%;
-  max-height: 100%;
-}
-
-.app-parent__spinner {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-
-  img {
-    height: 100px;
-  }
-}
-
-.app-parent__header-logo {
-  img {
-    height: 40px;
-    margin-right: 10px;
-  }
-}
-
-
-.app-parent {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-grow: 1;
-  width: 100%;
-}
-
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #ffffff;
-  text-align: left;
-  color: #2c3e50;
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  z-index: 0;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-grow: 1;
-
-  input {
-    background: #ffffff;
-    border-radius: 15px;
-    padding: 11px 25px;
-    width: 100%;
-    border: 1;
-    max-width: 300px;
-  }
-
-  .app-parent__main {
-    padding: 0;
-    min-height: 100%;
-    width: 100%;
-    flex-grow: 1;
-    padding: 20px 40px;
-  }
-
-  .app-parent__modal-target {
-    z-index: 100;
-  }
-
-  .app-parent__header {
-    display: flex;
-    align-self: flex-start;
-    color: #07a4ff;
-    font-size: 48px;
-    background-color: #202a37;
-    width: 100%;
-    padding: 0 80px;
-    min-width: 100%;
-
-    em {
-      color: white;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 20px;
-      line-height: 23px;
-    }
-  }
-
-  .app-parent__footer {
-    padding: 10px 10%;
-    text-align: center;
-    font-size: 14px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    max-width: 100%;
-    border-top: 2px solid #eee;
-    width: 100%;
-
-    .app-parent__footer-center {
-      flex-grow: 1;
-    }
-
-    div:nth-of-type(2) {
-      opacity: 0.5;
-    }
-
-    .app-parent__footer-links {
-      justify-self: flex-end;
-    }
-  }
-
-  .success {
-    color: #01cea2;
-  }
-
-  button {
-    background: #304552;
-    border: 1px solid #497383;
-    box-sizing: border-box;
-    color: white;
-    font-size: 14px;
-    padding: 7px 10px;
-    min-width: 150px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-
-    &:hover {
-      border: 1px solid white;
-    }
-
-    img {
-      margin-right: 10px;
-    }
-  }
-}
-</style>

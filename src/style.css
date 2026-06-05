@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/*********************************
+ ** Design tokens (Tailwind v4 CSS config)
+ ** Generates color utilities, e.g. bg-brand, text-ink, border-btn-border
+ ********************************/
+@theme {
+  --color-brand: #07a4ff;
+  --color-header: #202a37;
+  --color-ink: #2c3e50;
+  --color-btn: #304552;
+  --color-btn-border: #497383;
+  --color-success: #01cea2;
+  --color-danger: #ff0000;
+  --color-card: #ddddff;
+  --color-card-muted: #4444aa;
+  --color-surface: #eeeeff;
+  --color-divider: #eeeeee;
+}
+
+/*********************************
+ ** Base / global element styles
+ ********************************/
+@layer base {
+  body {
+    @apply m-0 max-h-full min-h-full p-0;
+    font-family: "Roboto", sans-serif;
+  }
+
+  /* #app is the mount node in index.html, so it lives here rather than on a template element */
+  #app {
+    @apply z-0 flex min-h-screen w-full grow flex-col items-start justify-start bg-white text-left text-ink;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/*********************************
+ ** Reusable component classes (replace the old global #app input / #app button rules)
+ ********************************/
+@layer components {
+  .btn {
+    @apply flex h-10 min-w-[150px] cursor-pointer flex-row items-center justify-center border border-btn-border bg-btn px-2.5 py-[7px] text-sm text-white;
+  }
+
+  .btn:hover {
+    @apply border-white;
+  }
+
+  .btn > img {
+    @apply mr-2.5;
+  }
+
+  .field {
+    @apply w-full max-w-[300px] rounded-[15px] bg-white px-[25px] py-[11px];
+  }
+}
