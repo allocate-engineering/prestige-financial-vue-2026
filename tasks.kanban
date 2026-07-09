@@ -1,0 +1,81 @@
+{
+  "lists": [
+    {
+      "id": "943e5c5a-8130-42c6-88a7-68301a49db24",
+      "title": "Todo",
+      "cards": [
+        {
+          "id": "ac497308-0fe1-48d9-a28f-c9f2af6c6c06",
+          "listId": "943e5c5a-8130-42c6-88a7-68301a49db24",
+          "title": "Style the login page",
+          "description": "Our login page is not styled well, and we wish to make a better first impression with our clients.\n\nOur designer has come up with some guidance and a mockup for how the login page should look:\n\n- centered on page\n- 400px wide\n- background color of `#f2f2f2`\n- add 40px of padding\n- curve the box edges by 6px\n\n![Login page mockup](https://github.com/allocate-engineering/prestige-financial-vue/assets/106280605/3f64fc2f-6a94-4786-988a-fdd7a3af4757)",
+          "labels": [],
+          "checkboxes": [],
+          "comments": []
+        },
+        {
+          "id": "6bccc345-a75d-4990-96d8-5f0438584b55",
+          "listId": "943e5c5a-8130-42c6-88a7-68301a49db24",
+          "title": "Add a logout button",
+          "description": "There is currently no way for a user to logout of the site.\n\n- The button should be positioned in the header\n- It should be right aligned\n- Ensure it only shows up when the user is logged in\n\n![Logout button mockup](https://github.com/allocate-engineering/prestige-financial-vue/assets/106280605/95db8a32-6afe-44b6-8df2-d8b10ccd9b4e)",
+          "labels": [],
+          "checkboxes": [],
+          "comments": []
+        },
+        {
+          "id": "ba008c3c-46a6-4e09-98f2-5487511d30fe",
+          "listId": "943e5c5a-8130-42c6-88a7-68301a49db24",
+          "title": "Create a stock table for MSFT",
+          "description": "Our customers are very interested in the historical monthly stock price of Microsoft ($MSFT). They would like to see, front and center, a table showing the following fields:\n\n- date\n- open\n- high\n- low\n- close\n- total volume\n\nWe have contracted with a service provider, Alpha Vantage, to provide this data for us. Due to rate limiting of the production endpoint, they have also provided a dev endpoint for us to hit during development. Their API is as follows:\n\n- **Dev:** `http://jon.allocate.build/msft.json`\n- **Prod:** `https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=MSFT&apikey={apikey}`\n\nOur API key is: `202R8IO0CQ89VYFE`\n\nOur designer has come up with the following mockup for the table. The guidance from design is to have the table be 75% the width of the screen, and that each row should have 2px of top and bottom padding.\n\nThe designers would also like the company symbol to appear in the heading. Our SA found a great service that allows hotlinking, and can be accessed via: `https://financialmodelingprep.com/image-stock/{SYMBOL}.png`\n\nA junior engineer has started a table component that can be used: `TimeSeriesTable` (`src/components/TimeSeriesTable.vue`).\n\n![MSFT table mockup](https://user-images.githubusercontent.com/106280605/226613840-fe7e4b6c-cc88-4521-bafa-d11fe51182c2.png)",
+          "labels": [],
+          "checkboxes": [],
+          "comments": []
+        },
+        {
+          "id": "82cd4f82-8030-4431-b445-32e9b0a4afb6",
+          "listId": "943e5c5a-8130-42c6-88a7-68301a49db24",
+          "title": "Fix the top stocks page",
+          "description": "The top stocks page (`/top-stocks`) has been reported as no longer working. This is what the page should look like:\n\n![Top stocks page mockup](https://github.com/allocate-engineering/prestige-financial-vue/assets/106280605/2f124f8e-ea4a-4506-8684-4721fe46b458)",
+          "labels": [],
+          "checkboxes": [],
+          "comments": []
+        },
+        {
+          "id": "850aa0f7-fe81-4d9d-850f-168c870705c4",
+          "listId": "943e5c5a-8130-42c6-88a7-68301a49db24",
+          "title": "Support different stocks via the URL path",
+          "description": "Currently, our application displays stock information only for Microsoft ($MSFT). We want to extend this functionality to support displaying information for different stocks based on the URL path parameter.\n\n### Expected behavior\n\n- When a user visits the stock information page with a specific stock symbol in the URL path, e.g. `/AAPL`, the application should display stock information for Apple Inc. ($AAPL) instead of Microsoft ($MSFT).\n- The application should handle the case where a user inputs an invalid stock symbol or a stock symbol that doesn't exist in our data source. In such cases, display an appropriate error message.\n- Update the UI to allow users to easily navigate to different stock information pages.",
+          "labels": [],
+          "checkboxes": [],
+          "comments": []
+        },
+        {
+          "id": "c3daafaf-6439-4bf9-9bbb-25605cf6a528",
+          "listId": "943e5c5a-8130-42c6-88a7-68301a49db24",
+          "title": "Add a property to the global Window object",
+          "description": "`src/App.vue` assigns a custom property to `window` for debugging:\n\n```ts\nwindow.__PRESTIGE__ = { firebase: firebaseApp }\n```\n\nThis raises a TypeScript error (*Property '__PRESTIGE__' does not exist on type 'Window & typeof globalThis'*). Run `npm run typecheck` (or check your editor) to see it.\n\n- Make `npm run typecheck` pass **without** disabling or escaping the type checker (no `// @ts-ignore`, no `as any`).\n- The property should be properly typed wherever it is accessed.",
+          "labels": [],
+          "checkboxes": [],
+          "comments": []
+        }
+      ]
+    },
+    {
+      "id": "81766a52-ec05-4be5-ae12-346170b517a5",
+      "title": "Doing",
+      "cards": []
+    },
+    {
+      "id": "1937a5b0-8dfa-46dc-b102-1a66b2454657",
+      "title": "Done",
+      "cards": []
+    }
+  ],
+  "archive": {
+    "lists": [],
+    "cards": []
+  },
+  "settings": {
+    "labels": []
+  }
+}
