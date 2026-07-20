@@ -48,3 +48,8 @@ This project uses the Portable Kanban extension to manage the interview tasks:
 4. The Portable Kanban board opens automatically, showing your tasks in
    **Todo** / **Doing** / **Done** columns. Drag cards between columns as you
    work through them.
+
+> **Design mockups:** The Portable Kanban webview cannot render images, so the
+> mockups referenced in the tasks won't appear on the board. See
+> [`TASKS.md`](./TASKS.md) for the same tasks with the mockups displayed
+> (open it with VS Code's built-in Markdown preview, `Cmd/Ctrl+Shift+V`).
